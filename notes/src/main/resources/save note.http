@@ -1,0 +1,17 @@
+POST http://localhost:9999/api/notes
+Content-Type: application/json
+
+{
+  "userName": "Viktoriia",
+  "body": "note text"
+}
+###################################
+POST http://localhost:9999/api/notes
+Content-Type: application/json
+
+{
+"userName": "Viktoriia",
+"body": "note text new"
+}
+#################################
+GET http://localhost:9999/api/notes?username=Viktoriia

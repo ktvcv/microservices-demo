@@ -1,0 +1,9 @@
+POST http://localhost:9090/api/person
+Content-Type: application/json
+
+{
+  "name": "Viktoriia"
+}
+###
+
+GET http://localhost:9090/api/person/with-notes?username=Viktoriia
