@@ -15,6 +15,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class NotesController {
 
+    public static int DELAY = 500;
     private final NotesRepository repository;
 
     @PostMapping(value = "/api/notes")
@@ -23,7 +24,11 @@ public class NotesController {
     }
 
     @GetMapping(value = "/api/notes")
-    public Set<String> getNotes(@RequestParam final String username) {
-       return repository.getUserNotes(username);
+    public Set<String> getNotes(@RequestParam final String username) throws InterruptedException {
+        System.out.println("Waiting " + DELAY + " milis");
+        Thread.sleep(DELAY+=50);
+        System.out.println("Responding with error");
+        //throw new RuntimeException("Error");
+        return repository.getUserNotes(username);
     }
 }

@@ -3,6 +3,7 @@ package com.example.personsservice.api;
 import com.example.personsservice.domain.Person;
 import com.example.personsservice.dto.PersonDto;
 import com.example.personsservice.service.PersonService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

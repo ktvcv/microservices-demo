@@ -1,5 +1,8 @@
 package com.example.personsservice.feign;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,5 +13,8 @@ import java.util.List;
 public interface NotesFeign {
 
     @GetMapping("/api/notes")
-     List<String> getNotesList(@RequestParam final String username);
+    @CircuitBreaker(name = "notes", fallbackMethod = "defaultEmptyList")
+    @Bulkhead(name = "notes")
+    @Retry(name = "notes")
+    List<String> getNotesList(@RequestParam final String username);
 }

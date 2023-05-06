@@ -1,0 +1,16 @@
+resilience4j.circuitbreaker:
+  instances:
+    notes:
+      minimumNumberOfCalls: 5
+      slowCallDurationThreshold: 1000ms
+
+spring:
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+resilience4j.retry:
+  instances:
+    notes:
+      maxAttemps: 3
