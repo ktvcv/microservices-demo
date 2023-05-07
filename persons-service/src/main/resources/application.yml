@@ -9,8 +9,14 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
+    stream:
+      bindings:
+        noteAddedEventConsumer-in-0:
+          destination: notes-topic
+          group: notes-event-queue
 
 resilience4j.retry:
   instances:
     notes:
       maxAttemps: 3
+

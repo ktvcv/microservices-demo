@@ -3,7 +3,6 @@ package com.example.personsservice.api;
 import com.example.personsservice.domain.Person;
 import com.example.personsservice.dto.PersonDto;
 import com.example.personsservice.service.PersonService;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +18,17 @@ public class PersonController {
     private final PersonService personService;
 
     @PostMapping(value = "/api/person")
-    public void save(@RequestBody final Person person){
+    public void save(@RequestBody final Person person) {
         personService.save(person);
     }
 
     @GetMapping(value = "/api/person/with-notes")
-    public PersonDto getPersonWithNotes(@RequestParam final String username){
-        return personService.getPersonByUsername(username);
+    public PersonDto getPersonWithNotes(@RequestParam final String username) {
+        return personService.getWithNotes(username);
+    }
+
+    @GetMapping(value = "/api/person/with-notes-copied")
+    public PersonDto getPersonWithCopiedNotes(@RequestParam final String username) {
+        return personService.getwithNotesCopied(username);
     }
 }

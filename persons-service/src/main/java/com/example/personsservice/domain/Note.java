@@ -3,11 +3,11 @@ package com.example.personsservice.domain;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import java.util.List;
-
 @Data
 @Accessors(chain = true)
-public class Person {
+public class Note {
 
-    private String name;
+    private String userName;
+    private String body;
 }
+

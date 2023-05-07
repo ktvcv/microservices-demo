@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+
 @FeignClient(name = "notes")
 public interface NotesFeign {
 
     @GetMapping("/api/notes")
     @CircuitBreaker(name = "notes", fallbackMethod = "defaultEmptyList")
-    @Bulkhead(name = "notes")
-    @Retry(name = "notes")
+//    @Bulkhead(name = "notes")
+//    @Retry(name = "notes")
     List<String> getNotesList(@RequestParam final String username);
+
+     default List<String> defaultEmptyList(final String username,final Exception ex){
+        return emptyList();
+    }
 }
